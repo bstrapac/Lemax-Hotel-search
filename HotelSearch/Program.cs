@@ -7,8 +7,6 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 var hotelSearchService = new HotelSearchService();
-Console.WriteLine(hotelSearchService.GetAllHotels()[0].Name);
-
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -16,17 +14,20 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-app.MapGet("/hotel_near_me", (Location location) =>
+app.MapGet("/hotel_near_me", (double lat, double lng) =>
 {
-    var hotelSearchService = new HotelSearchService();
-    return hotelSearchService.GetNearestHotels(location);
+    return hotelSearchService.GetNearestHotel(new Location { Lat = lat, Long = lng });
 })
 .WithName("GetHotelNearMe");
 
+app.MapGet("/hotels_near_me/paged", (double lat, double lng, int pageNumber = 1, int pageSize = 10) =>
+{
+    return hotelSearchService.GetNearestHotelsPaged(new Location { Lat = lat, Long = lng }, pageNumber, pageSize);
+})
+.WithName("GetHotelsNearMePaged");
+
 app.MapGet("/hotels", () =>
 {
-    var hotelSearchService = new HotelSearchService();
     return hotelSearchService.GetAllHotels();
 })
 .WithName("GetAllHotels");

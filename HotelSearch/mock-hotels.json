@@ -1,0 +1,322 @@
+[
+  {
+    "Name": "Grand Hotel",
+    "Price": 415,
+    "Location": {
+      "Lat": 40.6934,
+      "Long": -73.9939
+    }
+  },
+  {
+    "Name": "Central Suites",
+    "Price": 215,
+    "Location": {
+      "Lat": 40.6990,
+      "Long": -73.9942
+    }
+  },
+  {
+    "Name": "Metro Inn",
+    "Price": 435,
+    "Location": {
+      "Lat": 40.7248,
+      "Long": -74.0037
+    }
+  },
+  {
+    "Name": "Urban Resort",
+    "Price": 390,
+    "Location": {
+      "Lat": 40.7089,
+      "Long": -74.0295
+    }
+  },
+  {
+    "Name": "City Lodge",
+    "Price": 200,
+    "Location": {
+      "Lat": 40.6994,
+      "Long": -74.0009
+    }
+  },
+  {
+    "Name": "Plaza Stay",
+    "Price": 375,
+    "Location": {
+      "Lat": 40.6977,
+      "Long": -73.9985
+    }
+  },
+  {
+    "Name": "Royal Villas",
+    "Price": 370,
+    "Location": {
+      "Lat": 40.7088,
+      "Long": -74.0085
+    }
+  },
+  {
+    "Name": "Apex Boutique Hotel",
+    "Price": 230,
+    "Location": {
+      "Lat": 40.7283,
+      "Long": -74.0307
+    }
+  },
+  {
+    "Name": "Crown Manor",
+    "Price": 170,
+    "Location": {
+      "Lat": 40.7227,
+      "Long": -74.0140
+    }
+  },
+  {
+    "Name": "Executive House",
+    "Price": 170,
+    "Location": {
+      "Lat": 40.6986,
+      "Long": -73.9928
+    }
+  },
+  {
+    "Name": "Harbor Hotel",
+    "Price": 140,
+    "Location": {
+      "Lat": 33.9991,
+      "Long": -118.5114
+    }
+  },
+  {
+    "Name": "Bayview Suites",
+    "Price": 265,
+    "Location": {
+      "Lat": 34.0247,
+      "Long": -118.4758
+    }
+  },
+  {
+    "Name": "Oceanic Inn",
+    "Price": 325,
+    "Location": {
+      "Lat": 34.0213,
+      "Long": -118.4675
+    }
+  },
+  {
+    "Name": "Seaside Resort",
+    "Price": 285,
+    "Location": {
+      "Lat": 33.9984,
+      "Long": -118.5015
+    }
+  },
+  {
+    "Name": "Marina Lodge",
+    "Price": 410,
+    "Location": {
+      "Lat": 34.0254,
+      "Long": -118.4731
+    }
+  },
+  {
+    "Name": "Coast Stay",
+    "Price": 385,
+    "Location": {
+      "Lat": 34.0041,
+      "Long": -118.5127
+    }
+  },
+  {
+    "Name": "Coral Villas",
+    "Price": 430,
+    "Location": {
+      "Lat": 34.0059,
+      "Long": -118.5017
+    }
+  },
+  {
+    "Name": "Pacific Boutique Hotel",
+    "Price": 130,
+    "Location": {
+      "Lat": 34.0373,
+      "Long": -118.4729
+    }
+  },
+  {
+    "Name": "Blue Wave Manor",
+    "Price": 285,
+    "Location": {
+      "Lat": 34.0084,
+      "Long": -118.4844
+    }
+  },
+  {
+    "Name": "Breeze House",
+    "Price": 275,
+    "Location": {
+      "Lat": 34.0026,
+      "Long": -118.4984
+    }
+  },
+  {
+    "Name": "Alpine Hotel",
+    "Price": 435,
+    "Location": {
+      "Lat": 39.6286,
+      "Long": -106.3524
+    }
+  },
+  {
+    "Name": "Pine Valley Suites",
+    "Price": 420,
+    "Location": {
+      "Lat": 39.6189,
+      "Long": -106.3675
+    }
+  },
+  {
+    "Name": "Summit Inn",
+    "Price": 365,
+    "Location": {
+      "Lat": 39.6518,
+      "Long": -106.3910
+    }
+  },
+  {
+    "Name": "Timberline Resort",
+    "Price": 285,
+    "Location": {
+      "Lat": 39.6288,
+      "Long": -106.3529
+    }
+  },
+  {
+    "Name": "Highland Lodge",
+    "Price": 440,
+    "Location": {
+      "Lat": 39.6431,
+      "Long": -106.3650
+    }
+  },
+  {
+    "Name": "Snow Peak Stay",
+    "Price": 120,
+    "Location": {
+      "Lat": 39.6268,
+      "Long": -106.3976
+    }
+  },
+  {
+    "Name": "Mountain Villas",
+    "Price": 250,
+    "Location": {
+      "Lat": 39.6354,
+      "Long": -106.3959
+    }
+  },
+  {
+    "Name": "Cedar Boutique Hotel",
+    "Price": 380,
+    "Location": {
+      "Lat": 39.6591,
+      "Long": -106.3835
+    }
+  },
+  {
+    "Name": "Whispering Pines Manor",
+    "Price": 425,
+    "Location": {
+      "Lat": 39.6403,
+      "Long": -106.3550
+    }
+  },
+  {
+    "Name": "Lodge House",
+    "Price": 420,
+    "Location": {
+      "Lat": 39.6382,
+      "Long": -106.3860
+    }
+  },
+  {
+    "Name": "Heritage Hotel",
+    "Price": 215,
+    "Location": {
+      "Lat": 48.8688,
+      "Long": 2.3541
+    }
+  },
+  {
+    "Name": "Old Town Suites",
+    "Price": 390,
+    "Location": {
+      "Lat": 48.8530,
+      "Long": 2.3564
+    }
+  },
+  {
+    "Name": "Chateau Inn",
+    "Price": 275,
+    "Location": {
+      "Lat": 48.8426,
+      "Long": 2.3771
+    }
+  },
+  {
+    "Name": "Historic Resort",
+    "Price": 350,
+    "Location": {
+      "Lat": 48.8563,
+      "Long": 2.3650
+    }
+  },
+  {
+    "Name": "Boutique Lodge",
+    "Price": 145,
+    "Location": {
+      "Lat": 48.8392,
+      "Long": 2.3352
+    }
+  },
+  {
+    "Name": "Palace Stay",
+    "Price": 440,
+    "Location": {
+      "Lat": 48.8527,
+      "Long": 2.3304
+    }
+  },
+  {
+    "Name": "Courtyard Villas",
+    "Price": 285,
+    "Location": {
+      "Lat": 48.8614,
+      "Long": 2.3506
+    }
+  },
+  {
+    "Name": "Lantern Boutique Hotel",
+    "Price": 220,
+    "Location": {
+      "Lat": 48.8802,
+      "Long": 2.3702
+    }
+  },
+  {
+    "Name": "Sovereign Manor",
+    "Price": 95,
+    "Location": {
+      "Lat": 48.8656,
+      "Long": 2.3329
+    }
+  },
+  {
+    "Name": "Vintage House",
+    "Price": 365,
+    "Location": {
+      "Lat": 48.8691,
+      "Long": 2.3656
+    }
+  }
+]
