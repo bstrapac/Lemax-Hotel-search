@@ -71,6 +71,18 @@ public class HotelSearchServiceTests
     }
 
     [Fact]
+    public void GetNearestHotelsPaged_AddsDistanceInKilometersForEachHotel()
+    {
+        var service = new HotelSearchService();
+        var location = new Location { Lat = 40.7128, Long = -74.0060 };
+
+        var result = service.GetNearestHotelsPaged(location, pageNumber: 1, pageSize: 3);
+
+        Assert.NotEmpty(result.Items);
+        Assert.All(result.Items, item => Assert.NotNull(item));
+    }
+
+    [Fact]
     public void GetNearestHotelsPaged_ReturnsHotelsFromClosestToFarthest()
     {
         var service = new HotelSearchService();

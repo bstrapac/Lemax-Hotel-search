@@ -27,14 +27,14 @@ namespace HotelSearch.Controllers
         }
 
         [HttpGet("near-me")]
-        public ActionResult<Hotel?> GetNearestHotel([FromQuery] double lat, [FromQuery] double lng)
+        public ActionResult<HotelDto?> GetNearestHotel([FromQuery] double lat, [FromQuery] double lng)
         {
             _logger.LogInformation("Searching nearest hotel for coordinates lat: {Lat}, lng: {Lng}", lat, lng);
             return Ok(_hotelSearchService.GetNearestHotel(new Location { Lat = lat, Long = lng }));
         }
 
         [HttpGet("near-me/paged")]
-        public ActionResult<PagedHotelResult> GetNearestHotelsPaged([FromQuery] double lat, [FromQuery] double lng, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public ActionResult<PagedHotelWithDistanceResult> GetNearestHotelsPaged([FromQuery] double lat, [FromQuery] double lng, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             _logger.LogInformation("Searching paged nearby hotels for coordinates lat: {Lat}, lng: {Lng}, pageNumber: {PageNumber}, pageSize: {PageSize}", lat, lng, pageNumber, pageSize);
             return Ok(_hotelSearchService.GetNearestHotelsPaged(new Location { Lat = lat, Long = lng }, pageNumber, pageSize));
