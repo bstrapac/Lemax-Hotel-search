@@ -12,6 +12,8 @@ namespace HotelSearch.Utils
         };
         private static List<Hotel>? CachedHotels;
 
+        private static readonly ILogger logger = LoggerFactory.Create(_ => { }).CreateLogger("HotelLoad");
+
         public static List<Hotel> LoadHotels()
         {
             if (CachedHotels is null)
@@ -49,7 +51,6 @@ namespace HotelSearch.Utils
             }
             catch (Exception ex)
             {
-                var logger = LoggerFactory.Create(_ => { }).CreateLogger("HotelLoad");
                 logger.LogError(ex, "Failed to load hotels from mock JSON file");
                 return [];
             }
@@ -62,6 +63,7 @@ namespace HotelSearch.Utils
         {
             PropertyNameCaseInsensitive = true
         };
+        private static readonly ILogger logger = LoggerFactory.Create(_ => { }).CreateLogger("HotelLoad");
 
         public static List<Hotel> CreateAndCacheHotels(string hotels)
         {
@@ -78,7 +80,6 @@ namespace HotelSearch.Utils
             }
             catch (Exception ex)
             {
-                var logger = LoggerFactory.Create(_ => { }).CreateLogger("HotelCreation");
                 logger.LogError(ex, "Failed to create and cache hotels from imported JSON");
                 return [];
             }

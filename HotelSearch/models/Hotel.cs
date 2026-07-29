@@ -4,30 +4,29 @@ namespace HotelSearch.Models
     {
         public string Name { get; set; } = name;
         public int Price { get; set; } = price;
-
         public Location Location { get; set; } = location;
     }
 
-    public class HotelDto
+    public class HotelDto(Hotel hotel, double distanceKm)
     {
-        public Hotel Hotel { get; set; } = null!;
-        public double DistanceKm { get; set; }
+        public Hotel Hotel { get; set; } = hotel;
+        public double DistanceKm { get; set; } = distanceKm;
     }
 
-    public class PagedHotelResult
+    public class PagedHotelResult(int pageNumber, int pageSize, int totalCount, List<Hotel> items)
     {
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
-        public int TotalCount { get; set; }
-        public List<Hotel> Items { get; set; } = [];
+        public int PageNumber { get; set; } = pageNumber;
+        public int PageSize { get; set; } = pageSize;
+        public int TotalCount { get; set; } = totalCount;
+        public List<Hotel> Items { get; set; } = items;
     }
 
-    public class PagedHotelWithDistanceResult
+    public class PagedHotelWithDistanceResult(int pageNumber, int pageSize, int totalCount, List<HotelDto> items)
     {
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
-        public int TotalCount { get; set; }
-        public List<HotelDto> Items { get; set; } = [];
+        public int PageNumber { get; set; } = pageNumber;
+        public int PageSize { get; set; } = pageSize;
+        public int TotalCount { get; set; } = totalCount;
+        public List<HotelDto> Items { get; set; } = items;
     }
 
     public struct Location

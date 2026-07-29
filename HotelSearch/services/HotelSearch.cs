@@ -37,12 +37,12 @@ namespace HotelSearch.Services
             var startIndex = (safePageNumber - 1) * safePageSize;
 
             return new PagedHotelResult
-            {
-                PageNumber = safePageNumber,
-                PageSize = safePageSize,
-                TotalCount = hotels.Count,
-                Items = hotels.Skip(startIndex).Take(safePageSize).ToList()
-            };
+            (
+                safePageNumber,
+                safePageSize,
+                hotels.Count,
+                hotels.Skip(startIndex).Take(safePageSize).ToList()
+            );
         }
 
         public List<Hotel> GetAllHotels()
@@ -69,12 +69,12 @@ namespace HotelSearch.Services
             _logger.LogInformation("Returning {Count} hotels within price tolerance {Tolerance} for target price {TargetPrice}", hotels.Count, safeTolerance, targetPrice);
 
             return new PagedHotelResult
-            {
-                PageNumber = safePageNumber,
-                PageSize = safePageSize,
-                TotalCount = hotels.Count,
-                Items = hotels.Skip(startIndex).Take(safePageSize).ToList()
-            };
+            (
+                safePageNumber,
+                safePageSize,
+                hotels.Count,
+                hotels.Skip(startIndex).Take(safePageSize).ToList()
+            );
         }
 
     }

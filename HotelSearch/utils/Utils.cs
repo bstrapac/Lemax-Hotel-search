@@ -40,11 +40,7 @@ namespace HotelSearch.Utils
 
         public static HotelDto CreateHotelWithDistanceDto(Hotel hotel, Location source)
         {
-            return new HotelDto
-            {
-                Hotel = hotel,
-                DistanceKm = GetDistanceInKm(source, hotel.Location)
-            };
+            return new HotelDto(hotel, GetDistanceInKm(source, hotel.Location));
         }
 
         private static double DegreesToRadians(double degrees)
