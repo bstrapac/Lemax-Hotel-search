@@ -1,32 +1,23 @@
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using HotelSearch.Models;
+using HotelSearch.Utils;
 
 namespace HotelSearch.Services
 {
     public class HotelSearchService
     {
-        private static readonly JsonSerializerOptions JsonOptions = new()
-        {
-            PropertyNameCaseInsensitive = true
-        };
-
-        private static readonly Lazy<List<Hotel>> CachedHotels = new(
-            () => LoadHotelsFromFile(),
-            LazyThreadSafetyMode.ExecutionAndPublication);
-
         public Hotel? GetNearestHotel(Location location)
         {
-            return LoadHotels()
-                .OrderBy(hotel => GetDistance(location, hotel.Location))
+            return HotelUtils.LoadHotels()
+                .OrderBy(hotel => HotelUtils.GetDistance(location, hotel.Location))
                 .FirstOrDefault();
         }
 
         public PagedHotelResult GetNearestHotelsPaged(Location location, int pageNumber = 1, int pageSize = 10)
         {
-            var hotels = LoadHotels()
-                .OrderBy(hotel => GetDistance(location, hotel.Location))
+            var hotels = HotelUtils.LoadHotels()
+                .OrderBy(hotel => HotelUtils.GetDistance(location, hotel.Location))
+                .ThenBy(hotel => hotel.Name, StringComparer.OrdinalIgnoreCase)
                 .ToList();
 
             var safePageNumber = pageNumber < 1 ? 1 : pageNumber;
@@ -44,40 +35,31 @@ namespace HotelSearch.Services
 
         public List<Hotel> GetAllHotels()
         {
-            return LoadHotels();
+            return HotelUtils.LoadHotels();
         }
 
-        private static List<Hotel> LoadHotels()
+        public PagedHotelResult GetHotelsByPrice(int targetPrice, int priceTolerance = 50, int pageNumber = 1, int pageSize = 10)
         {
-            return CachedHotels.Value;
-        }
+            var safeTolerance = priceTolerance < 0 ? 0 : priceTolerance;
+            var safePageNumber = pageNumber < 1 ? 1 : pageNumber;
+            var safePageSize = pageSize < 1 ? 10 : pageSize;
+            var startIndex = (safePageNumber - 1) * safePageSize;
 
-        private static List<Hotel> LoadHotelsFromFile()
-        {
-            try
+            var hotels = HotelUtils.LoadHotels()
+                .Where(hotel => Math.Abs(hotel.Price - targetPrice) <= safeTolerance)
+                .OrderBy(hotel => Math.Abs(hotel.Price - targetPrice))
+                .ThenBy(hotel => hotel.Price)
+                .ThenBy(hotel => hotel.Name, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            return new PagedHotelResult
             {
-                var filePath = Path.Combine(AppContext.BaseDirectory, "mock-hotels.json");
-                if (!File.Exists(filePath))
-                {
-                    return [];
-                }
-
-                var json = File.ReadAllText(filePath);
-                var hotels = JsonSerializer.Deserialize<List<Hotel>>(json, JsonOptions);
-
-                return hotels ?? [];
-            }
-            catch (Exception)
-            {
-                return [];
-            }
+                PageNumber = safePageNumber,
+                PageSize = safePageSize,
+                TotalCount = hotels.Count,
+                Items = hotels.Skip(startIndex).Take(safePageSize).ToList()
+            };
         }
 
-        private static double GetDistance(Location source, Location target)
-        {
-            var latDiff = source.Lat - target.Lat;
-            var longDiff = source.Long - target.Long;
-            return Math.Sqrt((latDiff * latDiff) + (longDiff * longDiff));
-        }
     }
 }
