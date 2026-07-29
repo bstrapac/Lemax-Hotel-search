@@ -1,5 +1,5 @@
-using System.IO;
 using System.Text.Json;
+
 using HotelSearch.Models;
 
 namespace HotelSearch.Utils
@@ -10,7 +10,6 @@ namespace HotelSearch.Utils
         {
             PropertyNameCaseInsensitive = true
         };
-
         private static List<Hotel>? CachedHotels;
 
         public static List<Hotel> LoadHotels()
@@ -48,8 +47,10 @@ namespace HotelSearch.Utils
 
                 return hotels ?? [];
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                var logger = LoggerFactory.Create(_ => { }).CreateLogger("HotelLoad");
+                logger.LogError(ex, "Failed to load hotels from mock JSON file");
                 return [];
             }
         }
@@ -75,8 +76,10 @@ namespace HotelSearch.Utils
                 HotelLoad.ReplaceCache(createdHotels);
                 return createdHotels;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                var logger = LoggerFactory.Create(_ => { }).CreateLogger("HotelCreation");
+                logger.LogError(ex, "Failed to create and cache hotels from imported JSON");
                 return [];
             }
         }

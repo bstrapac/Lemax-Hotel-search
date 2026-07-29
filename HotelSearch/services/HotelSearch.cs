@@ -1,4 +1,3 @@
-using System.Linq;
 using HotelSearch.Models;
 using HotelSearch.Utils;
 
@@ -6,11 +5,22 @@ namespace HotelSearch.Services
 {
     public class HotelSearchService
     {
+        private readonly ILogger _logger;
+
+        public HotelSearchService(ILogger? logger = null)
+        {
+            _logger = logger ?? LoggerFactory.Create(_ => { }).CreateLogger("HotelSearchService");
+        }
+
         public Hotel? GetNearestHotel(Location location)
         {
-            return HotelUtils.LoadHotels()
+            var hotels = HotelUtils.LoadHotels();
+            var nearestHotel = hotels
                 .OrderBy(hotel => HotelUtils.GetDistance(location, hotel.Location))
                 .FirstOrDefault();
+
+            _logger.LogInformation("Resolved nearest hotel for lat: {Lat}, lng: {Lng}. Result: {HotelName}", location.Lat, location.Long, nearestHotel?.Name ?? "None");
+            return nearestHotel;
         }
 
         public PagedHotelResult GetNearestHotelsPaged(Location location, int pageNumber = 1, int pageSize = 10)
@@ -19,6 +29,8 @@ namespace HotelSearch.Services
                 .OrderBy(hotel => HotelUtils.GetDistance(location, hotel.Location))
                 .ThenBy(hotel => hotel.Name, StringComparer.OrdinalIgnoreCase)
                 .ToList();
+
+            _logger.LogInformation("Returning {Count} nearby hotels for lat: {Lat}, lng: {Lng}, pageNumber: {PageNumber}, pageSize: {PageSize}", hotels.Count, location.Lat, location.Long, pageNumber, pageSize);
 
             var safePageNumber = pageNumber < 1 ? 1 : pageNumber;
             var safePageSize = pageSize < 1 ? 10 : pageSize;
@@ -35,7 +47,9 @@ namespace HotelSearch.Services
 
         public List<Hotel> GetAllHotels()
         {
-            return HotelUtils.LoadHotels();
+            var hotels = HotelUtils.LoadHotels();
+            _logger.LogInformation("Returning {Count} hotels from the active source", hotels.Count);
+            return hotels;
         }
 
         public PagedHotelResult GetHotelsByPrice(int targetPrice, int priceTolerance = 50, int pageNumber = 1, int pageSize = 10)
@@ -51,6 +65,8 @@ namespace HotelSearch.Services
                 .ThenBy(hotel => hotel.Price)
                 .ThenBy(hotel => hotel.Name, StringComparer.OrdinalIgnoreCase)
                 .ToList();
+
+            _logger.LogInformation("Returning {Count} hotels within price tolerance {Tolerance} for target price {TargetPrice}", hotels.Count, safeTolerance, targetPrice);
 
             return new PagedHotelResult
             {
